@@ -5,7 +5,7 @@
 # from itertools import cycle
 
 
-TOKEN = 'MTA4ODk5Mzg0NTM0MzE3ODc3Mg.GekDOj.mD0aW0yu4rMemVymUi9KL6cR5nURmW6PwgMtcY'
+TOKEN = ''
 
 # intents = discord.Intents.default()
 # client = commands.Bot(command_prefix='.', intents=intents)
