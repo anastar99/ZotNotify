@@ -42,3 +42,4 @@ class shovel:
         class_data_dict = {class_data[i]:code_data_html[i].text for i in range(len(class_data))}
 
         return class_data_dict
+# https://discord.com/api/oauth2/authorize?client_id=1088993845343178772&permissions=534723950656&scope=bot
