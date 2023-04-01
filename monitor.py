@@ -1,45 +1,10 @@
-# from src.shovel_class import shovel
-# import discord
-# from discord.ext import commands
-# import asyncio
-# from itertools import cycle
-
-
-TOKEN = ''
-
-# intents = discord.Intents.default()
-# client = commands.Bot(command_prefix='.', intents=intents)
-# class_codes = [123, 456, 678]
-# async def check_class_status():
-#     await client.wait_until_ready()
-
-#     while not client.is_closed:
-
-#         for i in class_codes:
-#             print(i)
-
-#         await asyncio.sleep(3)
-
-# @client.event
-# async def on_ready():
-#     print('Bot is ready.')
-
-# async def main():
-#     async with client:
-#         client.loop.create_task(check_class_status())
-#         await client.start(TOKEN)
-
-# if __name__ == "__main__":
-#     asyncio.run(main())
-
-# # 1088998577986097257
-# # 1088998577986097257
-
-
+from src.shovel_class import shovel
 import asyncio
 import discord
 from discord.ext import commands
 from discord import app_commands
+
+TOKEN = 'MTA4ODk5Mzg0NTM0MzE3ODc3Mg.GZqfwq.gzjHP229u726Zl8sFWBfnnZElj118AmMj1Vi6U'
 
 intents = discord.Intents.default()
 intents.typing = True
@@ -47,10 +12,30 @@ intents.messages = True
 intents.message_content = True
 client = commands.Bot(command_prefix='!', intents=intents)
 
+monitoring_classes = [1234, 4567, 8904]
+
+def discord_msg(code_status):
+     """
+     Sends a message to the server if the class is now available
+     otherwise does nothing
+     """
+     if code_status == 'Waitlist' or 'Open':
+          return "Class is not closed any more gogogo"
+     return None
+     
+
+def code_check(code):
+     """
+     Checks the status of the code, calls the msg function
+     """
+     code_status = shovel(code).check_status()
+     discord_msg(code_status)
+
 async def background_task():
     while True:
         # do some background task here
-        print("cooll")
+        for code in monitoring_classes:
+             code_check(code)
         await asyncio.sleep(10) # wait for 60 seconds before running again
 
 @client.event
@@ -59,9 +44,10 @@ async def on_ready():
     client.loop.create_task(background_task())
 
 @client.command()
-async def hello(ctx):
-    print("excuted")
-    await ctx.send('Hello, world')
+async def add(ctx):
+    code = ctx.message.content[5::]
+    monitoring_classes.append(code)
+    await ctx.send(f'Monitoring Class: {code}')
 
 @client.listen()
 async def on_message(message):
