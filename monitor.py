@@ -1,9 +1,9 @@
 import asyncio
 import discord
 from discord.ext import commands
-from discord import app_commands
 from src.shovel_class import shovel
 from src.msg_embeds import *
+
 
 TOKEN = 'MTA4ODk5Mzg0NTM0MzE3ODc3Mg.GZqfwq.gzjHP229u726Zl8sFWBfnnZElj118AmMj1Vi6U'
 CHANNEL_ID = 1088998577986097257
@@ -17,25 +17,30 @@ client = commands.Bot(command_prefix='!', intents=intents)
 
 monitoring_classes = []
 
-async def discord_msg(code_status):
+
+async def discord_msg(course_data):
      """
      Sends a message to the server if the class is now available
      otherwise does nothing
      """
+
      channel = client.get_channel(CHANNEL_ID)
-     print(code_status)
-     if code_status == 'Waitl' or code_status == 'OPEN':
-          await channel.send(embed=start_monitoring(3456))
-          return True
-     return False
+     if course_data['status'] == 'Waitl':
+
+          await channel.send(embed=class_waitlist(course_data))
+          monitoring_classes.remove(course_data['code'])
+
+     if course_data['status'] == 'OPEN':
+          await channel.send(embed=class_open(course_data))
+          monitoring_classes.remove(course_data['code'])
      
 
 async def code_check(code):
      """
      Checks the status of the code, calls the msg function
      """
-     code_status = shovel(code).check_status()
-     await discord_msg(code_status)
+     course_data = shovel(code).course_summary()
+     await discord_msg(course_data)
 
 async def background_task():
     while True:
@@ -53,7 +58,7 @@ async def on_ready():
 async def add(ctx):
     code = ctx.message.content[5::]
     monitoring_classes.append(code)
-    await ctx.send(f'Monitoring Class: {code}')
+    await ctx.send(embed=start_monitoring(code))
 
 # @client.listen()
 # async def on_message(message):
