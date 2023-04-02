@@ -15,7 +15,9 @@ Give it a course code and it will monitor it until wailist is active or the clas
 
 
 # DEMO PICS
+STARTED MONITORING
 ![alt text](https://github.com/anastar99/uci-soc-monitor/blob/main/readme_pics/monitoring-pic.png?raw=true)
+WAITLIST AVAILABLE
 ![alt text](https://github.com/anastar99/uci-soc-monitor/blob/main/readme_pics/waitlist-pic.png?raw=true)
 
 
