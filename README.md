@@ -21,7 +21,6 @@ Give it a course code and it will monitor it until wailist is active or the clas
 
 
 # To Come
-- copy course code to clip board.
 - monitor a department section
 - data base to keep track of classes currently monitoring/previously monitored
 
