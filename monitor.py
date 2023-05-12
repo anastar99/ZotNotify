@@ -3,10 +3,11 @@ import discord
 from discord.ext import commands
 from src.shovel_class import shovel
 from src.msg_embeds import *
+from src.shh import CHANNEL_ID, TOKEN
 
 
-TOKEN = 'MTA4ODk5Mzg0NTM0MzE3ODc3Mg.GZqfwq.gzjHP229u726Zl8sFWBfnnZElj118AmMj1Vi6U'
-CHANNEL_ID = 1088998577986097257
+# TOKEN = 'MTA4ODk5Mzg0NTM0MzE3ODc3Mg.GZqfwq.gzjHP229u726Zl8sFWBfnnZElj118AmMj1Vi6U'
+#CHANNEL_ID = 1088998577986097257
 
 
 intents = discord.Intents.default()
