@@ -1,6 +1,6 @@
 # UCI SOC MONITOR
 
-A discord bot designed to monitor UC Irvine's, schedule of classes. Give it a course code and it will monitor the course until the course is open or waitlist is available. 
+A discord bot designed to make signing up for classes a bit easier at UC Irvine. Give it a course code and it will monitor the UC Irvine's schedule of classes, until the course is open or waitlist is available. 
 # Command
 
 ```python
